@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron container">
+            <h2 class="text-center">Updating Selected Invoice</h2>
+            <form action="/invoice/update" method="post">
+              <div>
+                  <input class="form-control" name="invoice_id" id="invoice_id" type="hidden" value=<%=invoice_id %>> <%console.log(invoice_data.actual_total)%>
+                  <label>Attached Quote ID (Refer to Quotes Tab)</label>
+                  <select class="form-control" name="quote_id" id="quote_id">  
+                        <option value=<%=invoice_data.quote_id %>>Currently Selected Quote: <%=invoice_data.quote_id %> </option>
+                    <% quotes_dropdown.forEach(function(quotes_dropdown) { %>              
+                        <option value=<%=quotes_dropdown.quote_id %>>Quote ID: <%=quotes_dropdown.quote_id%> | Quoted Cost: <%=quotes_dropdown.total_cost%></option>
+                    <% }); %>> 
+                  </select>
+                    <label>Invoice Status</label>
+                  <select class="form-control" name="invoice_status" id="invoice_status">
+                    <option value=<%=invoice_data.invoice_status %>><%=invoice_data.invoice_status%></option>           
+                    <option value="Pending">Pending</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Completed">Completed</option>
+                  </select>           
+                  <label>Comment</label>
+                      <textarea class="form-control" placeholder="Inserts Comments here" name="comments"><%=invoice_data.comments%></textarea>
+                  <label>Due Date</label>
+                      <input class="form-control" name="due_date" placeholder="YYYY-MM-DD" value=<%=invoice_data.due_date%>>
+                  <label>Total</label>
+                      <input class="form-control" name="actual_total" placeholder="000.00" value=<%=invoice_data.actual_total%>> <br>
+                  <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>
+              </div>
+            </form> 
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

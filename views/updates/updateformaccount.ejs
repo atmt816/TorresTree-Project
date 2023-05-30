@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron container">
+            <h2 class="text-center">Updating Selected Account</h2>
+            <form action="/acount/update" method="post">
+              <div>
+                  <input class="form-control" name="account_id" id="accountid" type="hidden" value=<%=current_account_data.account_id %>> 
+                  <label>User Name</label>    
+                  <input class="form-control" name="username" id="username"  value=<%=current_account_data.username %>>
+                  <label>User Password</label>    
+                  <input class="form-control" name="user_password" id="user_password" type="text" value=<%=current_account_data.user_password %>>  
+                  <label>System Privilege</label>
+                  <select class="form-control" name="privilege_id" id="car">
+                    <% privilege_id.forEach(function(privilege_id) { %>              
+                    <option value="<%=privilege_id.privilege_id %>"><%=privilege_id.privilege_name%></option>
+                    <% }); %>
+                  </select><BR>
+                  <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>
+              </div>
+            </form> 
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

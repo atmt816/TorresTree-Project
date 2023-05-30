@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron container">
+            <h2 class="text-center">Updating Selected Maintenance</h2>
+            <form action="/repair/update" method="post">
+              <div>
+                  <input class="form-control" name="repair_list" type="hidden" id="repair_id" value=<%=repair_id %>>
+                  <label>Repair Status</label>
+                  <select class="form-control" name="repair_status" id="repair_status"> 
+                      <option value=<%=repair_status%>>Currently: <%=repair_status%></option>                       
+                      <option value="Not Started">NOT STARTED</option>
+                      <option value="In-Progress">IN-PROGRESS</option>
+                      <option value="Completed">COMPLETED</option>
+                  </select>   
+                  <label>Repair Date</label>
+                    <input class="form-control" name="date_repair_start" id="repair_id" value=<%=date_repair_start %>>
+                  <label>Repair Comment</label>
+                    <textarea class="form-control" name="repair_comments" id="repair_id" type="text"><%=repair_comments %> </textarea>
+                    <br>
+                  <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>
+              </div>
+            </form> 
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron container">
+            <h2 class="text-center">Updating Selected Vehicle Information</h2>
+            <form action="/vehicle/information/update" method="post">
+                <label class="h4">Current Vehicle: <%=current_vehicleinfo_data.vehicle_name%></label>
+                <input type="hidden" name=vehicle_info_id value=<%=current_vehicleinfo_data.vehicle_info_id%>>
+                <BR><br>
+                <label for="ex1">Insurance</label>
+                    <input class="form-control" name="insurance_info" id="ex1" type="text" value=<%=current_vehicleinfo_data.insurance_info %>><BR>
+                <label for="ex1">Next Inspection Date</label>
+                    <input class="form-control" name="next_inspection_date" id="ex1" type="text" value=<%=current_vehicleinfo_data.next_inspection_date %>><BR>     
+              <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>    
+              </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

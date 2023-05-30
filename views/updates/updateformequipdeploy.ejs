@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container"> 
+        <div class="jumbotron container">
+            <h2 class="text-center">
+              Updating Equipment Deployment For <br>
+              <%=current_info.app_date%> <br>
+               ID <%=current_info.deploy_id%>
+            </h2>
+            <form class= "jumbotron" action="/equipdeploy/update" method="post">
+                <input type="hidden" name="deploy_id" id="deploy_id" value=<%=current_info.deploy_id%>>
+              <label>Chemical</label>
+                  <select class="form-control" name="chemical_id" id="chemical_id">
+                      <option value=<%=current_info.chemical_ID %>>Current Chemical Assigned: <%=current_info.chemcial_type %> <%=current_info.chemical_Name %></option>
+                      <option value="null">None</option>
+                      <% chemicals.forEach(function(chemicals) { %>              
+                          <option value=<%=chemicals.chemical_ID %>><%=chemicals.chemical_Name %></option>
+                      <% }); %>
+                  </select> 
+              <!-- Tool -->
+              <label for="ex1">Tool</label>
+                  <select class="form-control" name="equipment_id" id="equipment_id">
+                      <option value=<%=current_info.equipment_id %>>Current Tool Assigned: <%=current_info.equipment_type %> <%=current_info.equipment_name %></option>
+                      <option value="null">None</option>
+                      <% tools.forEach(function(tools) { %>              
+                      <option value=<%=tools.equipment_id %>> <%=tools.equipment_type%> <%=tools.equipment_name%> </option>
+                      <% }); %>
+                  </select>
+              <!-- Vehicle -->
+              <label for="ex1">Vehicle</label>
+                  <select class="form-control" name="vehicle_id" id="vehicle_id">
+                      <option value=<%=current_info.vehicle_id %>>Current Vehicle Assigned:<%=current_info.vehicle_name %> <%=current_info.vehicle_license %></option>
+                      <option value="null">None</option>
+                      <% vehicles.forEach(function(vehicles) { %>              
+                          <option value=<%=vehicles.vehicle_id %>><%=vehicles.vehicle_name%><%=current_info.vehicle_license %></option>
+                      <% }); %>
+                  </select>
+              <!-- Equipment Status -->
+              <label for="ex1">Equipment Status</label><BR>
+              <select class="form-control" name="equip_status" id="equip_status">
+                  <option value=<%=current_info.equip_status %>><%=current_info.equip_status %></option>
+                  <option value="PENDING">PENDING</option>
+                  <option value="DEPLOYED">DEPLOYED</option>
+                  <option value="RETURNED">RETURNED</option>
+                  <option value="MISSING">Currently Status: MISSING</option>
+              </select>
+              <br>
+              <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

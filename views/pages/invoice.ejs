@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<%- include('../partials/Modal'); %>
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h2>Invoice</h2>
+            <div>
+                <button class="btn btn-link" id="myBtn2">Update Existing Invoice</button>
+    
+                <div id="myModal2" class="modal">
+    
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <span class="close2">&times;</span>                     
+                      <h2 class="text-center">Update Existing Invoice</h2>
+                                <form action="/invoice/update/info" method="post">
+                                    <div class="jumbotron">
+                                        <!--drop down for Job ID -->
+                                        <label for="ex1">Select the Invoice ID You Wish To Update</label>
+                                          <select class="form-control" name="invoice_id" id="mainid">
+                                            <% invoice_list.forEach(function(invoice_list) { %>              
+                                              <option value=<%= invoice_list.invoice_id%>>
+                                                <%= invoice_list.invoice_id%> | <%= invoice_list.last_name%>, <%= invoice_list.first_name%>
+                                              </option>
+                                            <% }); %>
+                                          </select>
+                                        <br>
+                                        <button type="submit" style="color:#198754" class="btn btn-success">Submit</button>
+                                      </div> 
+                                </form> 
+                    </div>
+                    
+                </div>
+                <button class="btn btn-link" id="myBtn3">Delete Existing Invoice</button>
+    
+                <div id="myModal3" class="modal">
+    
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <span class="close3">&times;</span>
+                      <h2 class="text-center">Delete Existing Invoice</h2>
+                                <form action="/invoice/delete" method="post">
+                                    <div class="jumbotron">
+                                        <!--drop down for Job ID -->
+                                        <label for="ex1">Select the Invoice ID You Wish To Delete</label>
+                                          <select class="form-control" name="invoice_id" id="invoice_id">
+                                            <% invoice_list.forEach(function(invoice_list) { %>              
+                                              <option value=<%= invoice_list.invoice_id%>>
+                                                <%= invoice_list.invoice_id%> | <%= invoice_list.last_name%>, <%= invoice_list.first_name%>
+                                              </option> 
+                                            <% }); %>
+                                          </select>
+                                        <br>
+                                        <button type="submit" style="color:#198754" class="btn btn-success">Submit</button>
+                                      </div> 
+                                </form> 
+                    </div>
+                    
+                </div>
+
+            </div>
+            <div>
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th style="width: 200px;" >Name</th>
+                            <th style="width: 100px;" >Due Date</th>
+                            <th style="width: 400px;" >Comment</th>
+                            <th style="width: 100px;" >Total</th>
+                            <th style="width: 100px;" >Status</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% invoice_list.forEach(function(invoice_list) { %>
+                    <tr>
+                        <td><%= invoice_list.invoice_id%></td>
+                        <td><%=invoice_list.last_name%>, <%= invoice_list.first_name%></td>
+                        <td><%= invoice_list.due_date%></td>
+                        <td><%= invoice_list.comments%></td>
+                        <td>$<%= invoice_list.actual_total%></td>
+                        <td><%= invoice_list.invoice_status%></td>
+                    </tr>
+                    <% }); %>
+                   
+                </tbody>
+                </table>    
+            </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron container">
+            <h2 class="text-center">Updating Selected Supply</h2>
+            <% console.log(current_supplier_data) %>
+            <form action="/supplier/update" method="post">
+              <div>
+                  <input class="form-control" name="sup_contact_id" type="hidden" id="sup_contact_id" value=<%=current_supplier_data.sup_contact_id %>> 
+                  <label>Supplier Name</label>
+                  <input class="form-control" name="supplier_name" id="supplier_name" value="<%=current_supplier_data.supplier_name %>"> 
+                  <label>Supplier Phone</label>
+                  <input class="form-control" name="phone" id="phone" value=<%=current_supplier_data.phone %>>
+                  <label>Supplier Email</label>
+                  <input class="form-control" name="email" id="email" value=<%=current_supplier_data.email %>>
+                  <label>Street</label>
+                  <input class="form-control" name="street" id="street" value="<%=current_supplier_data.street %>">
+                  <label>City</label>
+                  <input class="form-control" name="city" id="city" value="<%=current_supplier_data.city %>">
+                  <label for="ex1">State</label>
+                  <select class="form-control" name="states" id="states">
+                    <option value=<%=current_supplier_data.state_code_id%>>Current State: <%=current_supplier_data.state_name%> </option>
+                    <% states.forEach(function(states) { %>              
+                    <option value="<%=states.state_code_id %>"><%=states.state_name%></option>
+                    <% }); %>
+                  </select>
+                 <label>Zipcode</label>
+                 <input class="form-control" name="zipcode" id="city" value="<%=current_supplier_data.zipcode %>">     
+                  <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>
+              </div>
+            </form> 
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

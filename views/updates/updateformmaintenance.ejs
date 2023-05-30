@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron container">
+            <h2 class="text-center">Updating Selected Maintenance</h2>
+            <form action="/vehicle/maintenance/update" method="post">
+              <div>
+                  <input class="form-control" name="maintenance_id" type="hidden" id="maintenance_id" value=<%=current_maintenance_data.maintenance_id %>> 
+                  <label class="h4">Car Being Maintained: <%=current_maintenance_data.vehicle_name%></label>
+                    <br><br>
+                    <label for="ex1">Select An Employee</label>
+                    <select class="form-control" name="employee_id" id="employee">
+                        <% employee_list.forEach(function(employee_list) { %>              
+                        <option value="<%=employee_list.employee_id %>"><%=employee_list.last_name%>,&nbsp;<%=employee_list.first_name%></option>
+                        <% }); %>
+                    </select>       
+                    <label>Service Date</label>
+                    <input class="form-control" name="service_date" id="service_date" value="<%=current_maintenance_data.service_date%>">  
+                    <label>Comment</label>
+                    <textarea class="form-control" rows="5" name="maintenance_comments" id="comment" ><%=current_maintenance_data.maintenance_comments%></textarea><BR>       
+                  <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>
+              </div>
+            </form> 
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

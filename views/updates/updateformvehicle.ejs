@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<%- include('../partials/Modal'); %>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="container">
+        <div class="jumbotron container">
+            <h2 class="text-center">Updating Selected Vehicle</h2>
+            <form action="/vehicle/update" method="post">
+              <div>
+                  <input class="form-control" name="vehicle_id" type="hidden" id="vehicle_id" value=<%=current_vehicle_data.vehicle_id %>> 
+                  <label>Vehicle Name</label>
+                    <input maxlength="128" class="form-control" name="vehicle_name" id="vehicle_name" value="<%=current_vehicle_data.vehicle_name%>"> 
+                  <label>Vehicle Vin</label>
+                    <input maxlength="17" class="form-control" name="vehicle_vin" id="vehicle_vin" value=<%=current_vehicle_data.vehicle_vin%>> 
+                  <label>Vehicle License</label>
+                    <input maxlength="8" class="form-control" name="vehicle_license" id="vehicle_license" value=<%=current_vehicle_data.vehicle_license%>> 
+                  <label>Vehicle Status</label>
+                  <select class="form-control" name="vehicle_status" id="vehicle_status"> 
+                    <option value=<%=current_vehicle_data.vehicle_status%>>Currently: <%=current_vehicle_data.vehicle_status%></option>                       
+                    <option value="Operational">Operational</option>
+                    <option value="Non-operational">Non-operational</option>
+                  </select>   
+                  <button type="submit" style="background-color:#198754" class="btn btn-success">Submit</button>
+              </div>
+            </form> 
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>
